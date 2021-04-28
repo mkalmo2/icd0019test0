@@ -1,0 +1,13 @@
+/out
+*.class
+*.jar
+/.idea/*
+
+!/.idea/misc.xml
+!/.idea/icd0019exam0.iml
+!/.idea/modules.xml
+
+!/lib/hamcrest-all-1.3.jar
+!/lib/junit-4.12.jar
+
+!monitor.jar
