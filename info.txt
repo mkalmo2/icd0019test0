@@ -1,6 +1,8 @@
 Eksami alguses peaksite käivitama käsu
 
-  java -jar monitor.jar <teie bitbuket-i kasutajatunnus>
+  Kodus> java -jar monitor.jar <teie bitbuket-i kasutajatunnus>
+  
+  Koolis> monitor <teie bitbuket-i kasutajatunnus>
 
   (olles kataloogis, kuhu te projekti kloonisite).
 
