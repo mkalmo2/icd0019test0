@@ -18,7 +18,7 @@ import static org.hamcrest.Matchers.*;
 public class RotatingListTests {
 
     @Test
-    @Points(5)
+    @Points(6)
     public void elementsAreStoredInAnArray() {
         RotatingList list = new RotatingList(3);
 
@@ -38,7 +38,7 @@ public class RotatingListTests {
     }
 
     @Test
-    @Points(5)
+    @Points(6)
     public void toStringDoesNotShowEmptyPositions() {
         RotatingList list = new RotatingList(10);
 
@@ -55,7 +55,7 @@ public class RotatingListTests {
     }
 
     @Test
-    @Points(5)
+    @Points(6)
     public void whenListIsFullThenStartAddingToTheBeginning() {
         RotatingList list = new RotatingList(3);
 
@@ -75,7 +75,7 @@ public class RotatingListTests {
     }
 
     @Test
-    @Points(5)
+    @Points(7)
     public void returnsElementsInAdditionOrder() {
         RotatingList list = new RotatingList(3);
 
