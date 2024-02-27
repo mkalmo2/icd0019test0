@@ -28,13 +28,13 @@ public class RotatingListTests {
 
         assertThat(list.getInternalState(), is("[1, 0, 0]"));
 
-        list.add(2);
-
-        assertThat(list.getInternalState(), is("[1, 2, 0]"));
-
         list.add(7);
 
-        assertThat(list.getInternalState(), is("[1, 2, 7]"));
+        assertThat(list.getInternalState(), is("[1, 7, 0]"));
+
+        list.add(2);
+
+        assertThat(list.getInternalState(), is("[1, 7, 2]"));
     }
 
     @Test
@@ -48,10 +48,10 @@ public class RotatingListTests {
 
         assertThat(list.toString(), is("[1]"));
 
-        list.add(2);
+        list.add(0);
         list.add(3);
 
-        assertThat(list.toString(), is("[1, 2, 3]"));
+        assertThat(list.toString(), is("[1, 0, 3]"));
     }
 
     @Test
@@ -69,9 +69,9 @@ public class RotatingListTests {
 
         assertThat(list.getInternalState(), is("[4, 2, 3]"));
 
-        list.add(5);
+        list.add(0);
 
-        assertThat(list.getInternalState(), is("[4, 5, 3]"));
+        assertThat(list.getInternalState(), is("[4, 0, 3]"));
     }
 
     @Test
@@ -89,9 +89,9 @@ public class RotatingListTests {
 
         assertThat(list.toString(), is("[2, 3, 4]"));
 
-        list.add(8);
+        list.add(2);
 
-        assertThat(list.toString(), is("[3, 4, 8]"));
+        assertThat(list.toString(), is("[3, 4, 2]"));
     }
 
     @Test
