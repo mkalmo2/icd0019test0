@@ -54,8 +54,7 @@ public class Runner {
 
     private Class<?> resolveClass(String tag) {
         Map<String, String> map = new HashMap<>();
-        map.put("ex1", "ex1.WordSortTest");
-        map.put("ex2", "ex2.NumberRepositoryTest");
+        map.put("ex1", "ex1.RotatingListTest");
 
         if (!map.containsKey(tag)) {
             throw new IllegalStateException("unknown tag: " + tag);

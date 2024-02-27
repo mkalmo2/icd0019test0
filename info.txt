@@ -4,8 +4,11 @@ Eksami alguses peaksite käivitama käsu
 
   (olles kataloogis, kuhu te projekti kloonisite).
 
-See programm esitab teie töö automaatselt. Soovitatav on kontrollida
-(nupp "Show Uploaded Data"), kas see ka nii on.
+See programm esitab teie töö automaatselt. Automaatselt laetakse üles vaid need failid,
+mille olete salvestanud. Java faile salvestab IDEA automaatselt aga teksti faile mitte.
+Kui olete teooriaküsimustele vastanud, siis salvestage see fail. Soovitatav on kontrollida,
+kas teie tehtud muudatused on üles laetud. Nupp "Show Uploaded Data avab veebilehe, kust on
+näha Git-i logi muudetud failidest ja nende muutmise ajast.
 
 Küsimused laeb monitor alla (faili questions.txt) siis, kui esimene ekraanitõmmis
 on üles saadetud.
