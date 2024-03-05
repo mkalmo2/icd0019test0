@@ -1,6 +1,6 @@
 Eksami alguses peaksite käivitama käsu
 
-  java -jar monitor.jar <teie bitbuket-i workspace ID>
+  java -jar monitor.jar <teie bitbucket-i workspace ID>
 
   (olles kataloogis, kuhu te projekti kloonisite).
 
@@ -10,8 +10,8 @@ Kui olete teooriaküsimustele vastanud, siis salvestage see fail. Soovitatav on 
 kas teie tehtud muudatused on üles laetud. Nupp "Show Uploaded Data avab veebilehe, kust on
 näha Git-i logi muudetud failidest ja nende muutmise ajast.
 
-Küsimused laeb monitor alla (faili questions.txt) siis, kui esimene ekraanitõmmis
-on üles saadetud.
+Küsimused laeb monitor alla (faili questions.txt) siis, kui olete monitori käivitanud
+ja esimene ekraanitõmmis on üles saadetud.
 
 Aega on ... minutit. Arvesse läheb seis, mis on esitatud enne kella ...
 
