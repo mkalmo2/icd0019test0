@@ -7,7 +7,6 @@ import org.junit.runner.notification.RunListener;
 
 import java.io.PrintStream;
 import java.text.MessageFormat;
-import java.util.HashMap;
 import java.util.Map;
 
 public class Runner {
@@ -16,9 +15,21 @@ public class Runner {
         new Runner().run(args[0]);
     }
 
+    private Class<?> resolveClass(String tag) {
+        Map<String, String> map = Map.of(
+                "ex1", "ex1.RotatingListTests");
+
+        if (!map.containsKey(tag)) {
+            throw new IllegalStateException("unknown tag: " + tag);
+        }
+
+        return loadClass(map.get(tag));
+    }
+
     private void run(String tag) {
 
         PrintStream out = System.out;
+        System.err.close();
 
         final PointHolder pointHolder = new PointHolder();
 
@@ -26,11 +37,16 @@ public class Runner {
         junit.addListener(new RunListener() {
             @Override
             public void testFailure(Failure failure) {
-                Points annotation = failure.getDescription()
+                Points pointsAnnotation = failure.getDescription()
                         .getAnnotation(Points.class);
 
-                if (annotation != null) {
-                    pointHolder.subtract(annotation.value());
+                if (pointsAnnotation != null) {
+                    pointHolder.subtract(pointsAnnotation.value());
+                }
+
+                if (failure.getDescription()
+                        .getAnnotation(NoPointsIfThisTestFails.class) != null) {
+                    pointHolder.subtract(100);
                 }
             }
 
@@ -40,27 +56,17 @@ public class Runner {
 
                 if (annotation != null) {
                     pointHolder.add(annotation.value());
+                    pointHolder.increaseTotal(annotation.value());
                 }
             }
         });
 
         junit.run(resolveClass(tag));
 
-        String pattern = "{0} of {1} points";
+        String pattern = "\n{0} of {1} points";
 
         out.println(MessageFormat.format(pattern,
-                pointHolder.getPoints(), 17));
-    }
-
-    private Class<?> resolveClass(String tag) {
-        Map<String, String> map = new HashMap<>();
-        map.put("ex1", "ex1.RotatingListTest");
-
-        if (!map.containsKey(tag)) {
-            throw new IllegalStateException("unknown tag: " + tag);
-        }
-
-        return loadClass(map.get(tag));
+                pointHolder.getPoints(), pointHolder.totalPoints));
     }
 
     private Class<?> loadClass(String className) {
@@ -73,13 +79,18 @@ public class Runner {
 
     private static class PointHolder {
         int points = 0;
+        int totalPoints = 0;
 
         public int getPoints() {
-            return points;
+            return Math.max(0, points);
         }
 
         void add(int points) {
             this.points += points;
+        }
+
+        void increaseTotal(int points) {
+            this.totalPoints += points;
         }
 
         void subtract(int points) {
