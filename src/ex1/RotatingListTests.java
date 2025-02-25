@@ -1,8 +1,10 @@
 package ex1;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import runner.NoPointsIfThisTestFails;
 import runner.Points;
+import runner.PointsCounterExtension;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -11,10 +13,9 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
+@ExtendWith(PointsCounterExtension.class)
 public class RotatingListTests {
 
     @Test
@@ -22,19 +23,19 @@ public class RotatingListTests {
     public void elementsAreStoredInAnArray() {
         RotatingList list = new RotatingList(3);
 
-        assertThat(list.getInternalState(), is("[0, 0, 0]"));
+        assertThat(list.getInternalState()).isEqualTo("[0, 0, 0]");
 
         list.add(1);
 
-        assertThat(list.getInternalState(), is("[1, 0, 0]"));
+        assertThat(list.getInternalState()).isEqualTo("[1, 0, 0]");
 
         list.add(7);
 
-        assertThat(list.getInternalState(), is("[1, 7, 0]"));
+        assertThat(list.getInternalState()).isEqualTo("[1, 7, 0]");
 
         list.add(2);
 
-        assertThat(list.getInternalState(), is("[1, 7, 2]"));
+        assertThat(list.getInternalState()).isEqualTo("[1, 7, 2]");
     }
 
     @Test
@@ -42,16 +43,16 @@ public class RotatingListTests {
     public void toStringDoesNotShowEmptyPositions() {
         RotatingList list = new RotatingList(10);
 
-        assertThat(list.toString(), is("[]"));
+        assertThat(list.toString()).isEqualTo("[]");
 
         list.add(1);
 
-        assertThat(list.toString(), is("[1]"));
+        assertThat(list.toString()).isEqualTo("[1]");
 
         list.add(0);
         list.add(3);
 
-        assertThat(list.toString(), is("[1, 0, 3]"));
+        assertThat(list.toString()).isEqualTo("[1, 0, 3]");
     }
 
     @Test
@@ -63,15 +64,15 @@ public class RotatingListTests {
         list.add(2);
         list.add(3);
 
-        assertThat(list.getInternalState(), is("[1, 2, 3]"));
+        assertThat(list.getInternalState()).isEqualTo("[1, 2, 3]");
 
         list.add(4);
 
-        assertThat(list.getInternalState(), is("[4, 2, 3]"));
+        assertThat(list.getInternalState()).isEqualTo("[4, 2, 3]");
 
         list.add(0);
 
-        assertThat(list.getInternalState(), is("[4, 0, 3]"));
+        assertThat(list.getInternalState()).isEqualTo("[4, 0, 3]");
     }
 
     @Test
@@ -83,15 +84,15 @@ public class RotatingListTests {
         list.add(2);
         list.add(3);
 
-        assertThat(list.toString(), is("[1, 2, 3]"));
+        assertThat(list.toString()).isEqualTo("[1, 2, 3]");
 
         list.add(4);
 
-        assertThat(list.toString(), is("[2, 3, 4]"));
+        assertThat(list.toString()).isEqualTo("[2, 3, 4]");
 
         list.add(2);
 
-        assertThat(list.toString(), is("[3, 4, 2]"));
+        assertThat(list.toString()).isEqualTo("[3, 4, 2]");
     }
 
     @Test
@@ -102,7 +103,7 @@ public class RotatingListTests {
 
         String source = Files.readString(Paths.get(path));
 
-        assertThat(source, not(containsString("java.util")));
+        assertThat(source).doesNotContain("java.util");
     }
 
     @Test
@@ -114,12 +115,12 @@ public class RotatingListTests {
                 .filter(field -> !field.getType().equals(int[].class))
                 .toList();
 
-        assertThat(fieldsNotAllowed, is(empty()));
+        assertThat(fieldsNotAllowed).isEmpty();
 
         List<Field> arrayFields = Arrays.stream(RotatingList.class.getDeclaredFields())
                 .filter(field -> field.getType().equals(int[].class))
                 .toList();
 
-        assertThat(arrayFields.size(), is(1));
+        assertThat(arrayFields.size()).isEqualTo(1);
     }
 }

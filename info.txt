@@ -1,4 +1,4 @@
-Eksami alguses peaksite käivitama käsu
+Kontrolltöö alguses peaksite käivitama käsu
 
   java -jar monitor.jar <teie bitbucket-i workspace ID>
 
@@ -10,8 +10,7 @@ Kui olete teooriaküsimustele vastanud, siis salvestage see fail. Soovitatav on 
 kas teie tehtud muudatused on üles laetud. Nupp "Show Uploaded Data avab veebilehe, kust on
 näha Git-i logi muudetud failidest ja nende muutmise ajast.
 
-Küsimused laeb monitor alla (faili questions.txt) siis, kui olete monitori käivitanud
-ja esimene ekraanitõmmis on üles saadetud.
+Küsimused laetakse alla monitori käivitamisel faili questions.txt.
 
 Aega on ... minutit. Arvesse läheb seis, mis on esitatud enne kella ...
 
