@@ -18,8 +18,7 @@ public class Runner {
 
     private String resolveClassName(String tag) {
         String className = Map.of(
-                "ex1", "ex1.RotatingListTests",
-                "ex2", "ex2.ContestantTests"
+                "ex1", "ex1.RotatingListTests"
                 ).get(tag);
 
         if (className != null) {
